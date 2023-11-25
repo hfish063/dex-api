@@ -27,6 +27,7 @@ public class ItemParser extends HtmlParser {
     }
 
     private Item parseItemElement(String theItemName) {
+        theItemName = formatItemName(theItemName);
         ArrayList<Element> attributeList = new ArrayList<>();
 
         Document doc = connect(Item.resourceUrl);
@@ -51,7 +52,31 @@ public class ItemParser extends HtmlParser {
                 theElements.get(2).text());
     }
 
+    private String formatItemName(String theItemName) {
+        final int CHAR_LIMIT = 100;
+        int length = theItemName.length();
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < length && length < CHAR_LIMIT; i++) {
+            char currentChar = theItemName.charAt(i);
+
+            if (i > 0 && theItemName.charAt(i - 1) == ' ') {
+                result.append(Character.toUpperCase(currentChar));
+            } else if (i == 0) {
+                result.append(Character.toUpperCase(currentChar));
+            } else {
+                result.append(currentChar);
+            }
+        }
+
+        return result.toString();
+    }
+
     private boolean verifyItemExists(ArrayList<Element> theElements, String theItemName) {
+        if (theElements.size() < 1) {
+            return false;
+        }
+
         return theElements.get(0).text().equals(theItemName);
     }
 }
