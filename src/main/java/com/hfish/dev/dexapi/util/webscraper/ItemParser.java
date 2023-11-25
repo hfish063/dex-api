@@ -45,10 +45,9 @@ public class ItemParser extends HtmlParser {
         return verifyItemExists(attributeList, theItemName) ? mapElementToItem(attributeList): null;
     }
 
-    // TODO: handle Category field
     private Item mapElementToItem(ArrayList<Element> theElements) {
          return new Item(theElements.get(0).text(),
-                Category.MEDICINE,
+                Category.valueOfLabel(theElements.get(1).text()),
                 theElements.get(2).text());
     }
 
