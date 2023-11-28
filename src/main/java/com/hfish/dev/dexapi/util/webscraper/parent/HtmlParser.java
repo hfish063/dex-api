@@ -22,7 +22,7 @@ public abstract class HtmlParser {
      *
      * @param theModelName name of the model we are looking for
      * @param theResourceUrl url to the webpage containing table of corresponding models
-     * @return object if model is found in table, else throw NoModelFoundException
+     * @return object if model is found in table, else null
      */
     protected Object parseModelElement(String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
@@ -34,11 +34,7 @@ public abstract class HtmlParser {
 
         ArrayList<Element> attributeList = selectModelAttributes(rows, theModelName);
 
-        if (!verifyModelExists(attributeList)) {
-            throw new NoModelFoundException();
-        }
-
-        return mapElementToModel(attributeList);
+        return verifyModelExists(attributeList) ? mapElementToModel(attributeList) : null;
     }
 
     /**

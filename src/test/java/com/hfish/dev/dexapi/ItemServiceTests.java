@@ -43,6 +43,7 @@ public class ItemServiceTests {
         assertEquals(expectedKeyItem.getName(), actualKeyItem.getName());
         assertEquals(expectedKeyItem.getEffect(), actualKeyItem.getEffect());
 
-        assertNull(itemService.findKeyItem(""));
+        assertThrows(NoModelFoundException.class, () -> {itemService.findKeyItem("");});
+        assertThrows(NoModelFoundException.class, () -> {itemService.findKeyItem("abc");});
     }
 }

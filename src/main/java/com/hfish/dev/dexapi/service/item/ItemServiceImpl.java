@@ -1,5 +1,6 @@
 package com.hfish.dev.dexapi.service.item;
 
+import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
 import com.hfish.dev.dexapi.util.webscraper.ItemParser;
@@ -32,7 +33,13 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public Item findItem(String theItemName) {
-        return itemParser.findItem(theItemName);
+        Item result = itemParser.findItem(theItemName);
+
+        if (result == null) {
+            throw new NoModelFoundException();
+        }
+
+        return result;
     }
 
     /**
@@ -43,6 +50,12 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public KeyItem findKeyItem(String theKeyItemName) {
-        return keyItemParser.findKeyItem(theKeyItemName, 1);
+        KeyItem result = keyItemParser.findKeyItem(theKeyItemName);
+
+        if (result == null) {
+            throw new NoModelFoundException();
+        }
+
+        return result;
     }
 }

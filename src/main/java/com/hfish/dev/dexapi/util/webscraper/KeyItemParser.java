@@ -24,7 +24,7 @@ public class KeyItemParser extends HtmlParser {
      * @param theName name of the key item we are searching for
      * @return a key item object with corresponding name field, null if not found
      */
-    public KeyItem findKeyItem(String theName, int theGeneration) {
+    public KeyItem findKeyItem(String theName) {
         return (KeyItem) parseModelElement(theName, KeyItem.resourceUrl);
     }
 
