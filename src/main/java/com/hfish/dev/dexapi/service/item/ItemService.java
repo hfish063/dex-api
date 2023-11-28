@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi.service;
+package com.hfish.dev.dexapi.service.item;
 
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;

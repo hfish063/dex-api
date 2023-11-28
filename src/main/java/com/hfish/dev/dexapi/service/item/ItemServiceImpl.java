@@ -1,25 +1,26 @@
-package com.hfish.dev.dexapi.service;
+package com.hfish.dev.dexapi.service.item;
 
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
 import com.hfish.dev.dexapi.util.webscraper.ItemParser;
+import com.hfish.dev.dexapi.util.webscraper.KeyItemParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
 /**
  * @author haydenfish
- * @version 11.24.2023
+ * @version 11.28.2023
  */
 
 @Service
 public class ItemServiceImpl implements ItemService{
     private ItemParser itemParser;
+    private KeyItemParser keyItemParser;
 
     @Autowired
-    public ItemServiceImpl(ItemParser itemParser) {
+    public ItemServiceImpl(ItemParser itemParser, KeyItemParser keyItemParser) {
         this.itemParser = itemParser;
+        this.keyItemParser = keyItemParser;
     }
 
     /**
@@ -31,7 +32,7 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public Item findItem(String theItemName) {
-        return itemParser.find(theItemName);
+        return itemParser.findItem(theItemName);
     }
 
     /**
@@ -42,7 +43,6 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public KeyItem findKeyItem(String theKeyItemName) {
-        return null;
-        //return itemParser.find(theKeyItemName);
+        return keyItemParser.findKeyItem(theKeyItemName, 1);
     }
 }

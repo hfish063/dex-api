@@ -3,7 +3,7 @@ package com.hfish.dev.dexapi;
 import com.hfish.dev.dexapi.model.enums.Category;
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
-import com.hfish.dev.dexapi.service.ItemService;
+import com.hfish.dev.dexapi.service.item.ItemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,12 +27,21 @@ public class ItemServiceTests {
         assertEquals(expectedItem.getEffect(), actualItem.getEffect());
 
         assertNull(itemService.findItem(""));
-
-        assertThrows(Exception.class, () -> itemService.findItem("abc"));
+        assertNull(itemService.findItem("abc"));
     }
 
     @Test
     public void testFindKeyItem() {
+        KeyItem expectedKeyItem = new KeyItem(
+                "Bike", "A folding Bike that enables a rider to get around much faster than with Running Shoes."
+        );
+        KeyItem actualKeyItem = itemService.findKeyItem("Bike");
 
+        assertInstanceOf(KeyItem.class, actualKeyItem);
+
+        assertEquals(expectedKeyItem.getName(), actualKeyItem.getName());
+        assertEquals(expectedKeyItem.getEffect(), actualKeyItem.getEffect());
+
+        assertNull(itemService.findKeyItem(""));
     }
 }

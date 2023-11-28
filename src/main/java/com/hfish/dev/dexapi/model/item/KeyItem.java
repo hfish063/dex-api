@@ -10,7 +10,7 @@ import com.hfish.dev.dexapi.util.ApiResource;
 public class KeyItem implements ApiResource {
     private String name;
     private String effect;
-    private final static String resourceUrl = "https://pokemondb.net/item/type/key";
+    public final static String resourceUrl = "https://pokemondb.net/item/type/key";
 
     public KeyItem(String name, String effect) {
         this.name = name;

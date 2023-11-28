@@ -1,7 +1,8 @@
 package com.hfish.dev.dexapi.controller;
 
 import com.hfish.dev.dexapi.model.item.Item;
-import com.hfish.dev.dexapi.service.ItemService;
+import com.hfish.dev.dexapi.model.item.KeyItem;
+import com.hfish.dev.dexapi.service.item.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/api/item")
+@RequestMapping("/api")
 public class ItemController {
     private ItemService itemService;
 
@@ -23,8 +24,13 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/{itemName}")
+    @GetMapping("/item/{itemName}")
     public Item findItem(@PathVariable("itemName") String theItemName) {
         return itemService.findItem(theItemName);
+    }
+
+    @GetMapping("/keyItem/{keyItemName}")
+    public KeyItem findKeyItem(@PathVariable("keyItemName") String theKeyItemName) {
+        return itemService.findKeyItem(theKeyItemName);
     }
 }
