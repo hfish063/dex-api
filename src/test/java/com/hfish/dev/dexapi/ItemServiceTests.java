@@ -1,5 +1,6 @@
 package com.hfish.dev.dexapi;
 
+import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.enums.Category;
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
@@ -26,8 +27,8 @@ public class ItemServiceTests {
         assertEquals(expectedItem.getCategory(), actualItem.getCategory());
         assertEquals(expectedItem.getEffect(), actualItem.getEffect());
 
-        assertNull(itemService.findItem(""));
-        assertNull(itemService.findItem("abc"));
+        assertThrows(NoModelFoundException.class, () -> {itemService.findItem("");});
+        assertThrows(NoModelFoundException.class, () -> {itemService.findItem("abc");});
     }
 
     @Test

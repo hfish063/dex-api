@@ -1,5 +1,6 @@
 package com.hfish.dev.dexapi.util.webscraper.parent;
 
+import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,7 +17,13 @@ import java.util.regex.Pattern;
  */
 
 public abstract class HtmlParser {
-    // TODO: method documentation
+    /**
+     * Parse html table data, finding a row containing desired model, returns an object containing model fields
+     *
+     * @param theModelName name of the model we are looking for
+     * @param theResourceUrl url to the webpage containing table of corresponding models
+     * @return object if model is found in table, else throw NoModelFoundException
+     */
     protected Object parseModelElement(String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
 
@@ -27,7 +34,11 @@ public abstract class HtmlParser {
 
         ArrayList<Element> attributeList = selectModelAttributes(rows, theModelName);
 
-        return verifyModelExists(attributeList) ? mapElementToModel(attributeList): null;
+        if (!verifyModelExists(attributeList)) {
+            throw new NoModelFoundException();
+        }
+
+        return mapElementToModel(attributeList);
     }
 
     /**
@@ -59,7 +70,11 @@ public abstract class HtmlParser {
     private String formatModelName(String theModelName) {
         final int CHAR_LIMIT = 100;
         int length = theModelName.length();
+
         StringBuilder result = new StringBuilder();
+
+        // toLowerCase is important, removes possibility of random characters being capitalized
+        theModelName = theModelName.toLowerCase();
 
         for(int i = 0; i < length && length < CHAR_LIMIT; i++) {
             char currentChar = theModelName.charAt(i);
@@ -91,7 +106,9 @@ public abstract class HtmlParser {
     }
 
     private boolean elementContainsModel(String theModelName, Element theCurrentElement) {
-        Pattern p = Pattern.compile("\\b" + theModelName + "\\b");
+        String modelNameRegex = "\\b" + theModelName + "\\b";
+
+        Pattern p = Pattern.compile(modelNameRegex);
         Matcher m = p.matcher(theCurrentElement.text());
 
         if (m.find()) {
@@ -111,9 +128,10 @@ public abstract class HtmlParser {
     /**
      * Provides implementation for taking list of attributes, and passing them to model constructor to create a new
      * object
+     * Defined in class, as model fields are not universal
      *
      * @param theAttributeList list of attributes to element containing our required model fields
-     * @return object with fields containing data scraped from html
+     * @return instance of model being searched for
      */
     protected abstract Object mapElementToModel(ArrayList<Element> theAttributeList);
 }
