@@ -32,14 +32,4 @@ public class KeyItemParser extends HtmlParser {
     protected KeyItem mapElementToModel(ArrayList<Element> theElements) {
         return new KeyItem(theElements.get(nameIndex).text(), theElements.get(descriptionIndex).text());
     }
-
-    @Override
-    protected boolean verifyModelExists(ArrayList<Element> theElements, String theItemName) {
-        if (theElements.size() < 1) {
-            return false;
-        }
-
-        //return theElements.get(0).text().contains(theItemName);
-        return true;
-    }
 }

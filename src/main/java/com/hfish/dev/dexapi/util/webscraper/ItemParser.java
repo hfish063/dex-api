@@ -36,13 +36,4 @@ public class ItemParser extends HtmlParser {
                 Category.valueOfLabel(theElements.get(categoryIndex).text()),
                 theElements.get(descriptionIndex).text());
     }
-
-    @Override
-    protected boolean verifyModelExists(ArrayList<Element> theElements, String theItemName) {
-        if (theElements.size() < 1) {
-            return false;
-        }
-
-        return theElements.get(0).text().equals(theItemName);
-    }
 }

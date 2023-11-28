@@ -19,14 +19,4 @@ public class MoveParser extends HtmlParser {
     protected Object mapElementToModel(ArrayList<Element> theElements) {
         return null;
     }
-
-    /**
-     * @param theElements
-     * @param theItemName
-     * @return
-     */
-    @Override
-    protected boolean verifyModelExists(ArrayList<Element> theElements, String theItemName) {
-        return false;
-    }
 }

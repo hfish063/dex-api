@@ -19,22 +19,15 @@ public abstract class HtmlParser {
     // TODO: method documentation
     protected Object parseModelElement(String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
-        ArrayList<Element> attributeList = new ArrayList<>();
 
         Document doc = connect(theResourceUrl);
 
         Element table = doc.select("table").first();
         Elements rows = table.select("tr");
 
-        for(int i = 1; i < rows.size(); i++) {
-            Element currentElement = rows.get(i);
+        ArrayList<Element> attributeList = selectModelAttributes(rows, theModelName);
 
-            if (elementContainsModel(theModelName, currentElement)) {
-                attributeList = currentElement.select("td");
-            }
-        }
-
-        return verifyModelExists(attributeList, theModelName) ? mapElementToModel(attributeList): null;
+        return verifyModelExists(attributeList) ? mapElementToModel(attributeList): null;
     }
 
     /**
@@ -44,7 +37,7 @@ public abstract class HtmlParser {
      * @param theResourceUrl url of the site for Jsoup to establish connection to
      * @return Jsoup Document object with site's html data
      */
-    protected Document connect(String theResourceUrl) {
+    private Document connect(String theResourceUrl) {
         Document doc = null;
 
         try {
@@ -63,7 +56,7 @@ public abstract class HtmlParser {
      * @param theModelName name of the object name we are formatting
      * @return String consisting of word(s) with capitalized first letter
      */
-    protected String formatModelName(String theModelName) {
+    private String formatModelName(String theModelName) {
         final int CHAR_LIMIT = 100;
         int length = theModelName.length();
         StringBuilder result = new StringBuilder();
@@ -83,7 +76,21 @@ public abstract class HtmlParser {
         return result.toString();
     }
 
-    protected boolean elementContainsModel(String theModelName, Element theCurrentElement) {
+    private ArrayList<Element> selectModelAttributes(Elements theRows, String theModelName) {
+        ArrayList<Element> attributeList = new ArrayList<>();
+
+        for(int i = 1; i < theRows.size(); i++) {
+            Element currentElement = theRows.get(i);
+
+            if (elementContainsModel(theModelName, currentElement)) {
+                attributeList = currentElement.select("td");
+            }
+        }
+
+        return attributeList;
+    }
+
+    private boolean elementContainsModel(String theModelName, Element theCurrentElement) {
         Pattern p = Pattern.compile("\\b" + theModelName + "\\b");
         Matcher m = p.matcher(theCurrentElement.text());
 
@@ -97,7 +104,16 @@ public abstract class HtmlParser {
         return false;
     }
 
-    protected abstract Object mapElementToModel(ArrayList<Element> theElements);
+    private boolean verifyModelExists(ArrayList<Element> theAttributeList) {
+        return !theAttributeList.isEmpty();
+    }
 
-    protected abstract boolean verifyModelExists(ArrayList<Element> theElements, String theItemName);
+    /**
+     * Provides implementation for taking list of attributes, and passing them to model constructor to create a new
+     * object
+     *
+     * @param theAttributeList list of attributes to element containing our required model fields
+     * @return object with fields containing data scraped from html
+     */
+    protected abstract Object mapElementToModel(ArrayList<Element> theAttributeList);
 }
