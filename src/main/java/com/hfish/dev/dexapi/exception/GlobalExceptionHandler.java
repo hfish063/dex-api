@@ -14,6 +14,7 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleNoModelFoundException(NoModelFoundException e) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage("No model found with corresponding name");
+        errorResponse.setHttpResponse(HttpStatus.NOT_FOUND.toString());
         return errorResponse;
     }
 }

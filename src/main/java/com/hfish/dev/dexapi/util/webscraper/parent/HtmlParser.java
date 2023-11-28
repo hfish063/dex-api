@@ -1,6 +1,5 @@
 package com.hfish.dev.dexapi.util.webscraper.parent;
 
-import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
