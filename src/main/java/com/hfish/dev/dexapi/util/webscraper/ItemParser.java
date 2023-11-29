@@ -31,9 +31,12 @@ public class ItemParser extends HtmlParser {
     }
 
     @Override
-    protected Item mapElementToModel(ArrayList<Element> theElements) {
-         return new Item(theElements.get(nameIndex).text(),
-                Category.valueOfLabel(theElements.get(categoryIndex).text()),
-                theElements.get(descriptionIndex).text());
+    protected Item mapElementToModel(ArrayList<Element> theAttributeList) {
+         String itemName = theAttributeList.get(nameIndex).text();
+         String categoryLabel = theAttributeList.get(categoryIndex).text();
+         Category itemCategory = Category.valueOfLabel(categoryLabel);
+         String itemDescription = theAttributeList.get(descriptionIndex).text();
+
+         return new Item(itemName, itemCategory, itemDescription);
     }
 }

@@ -29,7 +29,10 @@ public class KeyItemParser extends HtmlParser {
     }
 
     @Override
-    protected KeyItem mapElementToModel(ArrayList<Element> theElements) {
-        return new KeyItem(theElements.get(nameIndex).text(), theElements.get(descriptionIndex).text());
+    protected KeyItem mapElementToModel(ArrayList<Element> theAttributeList) {
+        String keyItemName = theAttributeList.get(nameIndex).text();
+        String keyItemDescription = theAttributeList.get(descriptionIndex).text();
+
+        return new KeyItem(keyItemName, keyItemDescription);
     }
 }
