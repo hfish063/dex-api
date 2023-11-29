@@ -8,6 +8,8 @@ import com.hfish.dev.dexapi.util.webscraper.KeyItemParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author haydenfish
  * @version 11.28.2023
@@ -33,13 +35,13 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public Item findItem(String theItemName) {
-        Item result = itemParser.findItem(theItemName);
+        Optional<Item> result = Optional.ofNullable(itemParser.findItem(theItemName));
 
-        if (result == null) {
-            throw new NoModelFoundException();
+        if (result.isEmpty()) {
+            throw new NoModelFoundException("Could not locate item with name - " + theItemName);
         }
 
-        return result;
+        return result.get();
     }
 
     /**
@@ -50,12 +52,12 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public KeyItem findKeyItem(String theKeyItemName) {
-        KeyItem result = keyItemParser.findKeyItem(theKeyItemName);
+        Optional<KeyItem> result = Optional.ofNullable(keyItemParser.findKeyItem(theKeyItemName));
 
-        if (result == null) {
-            throw new NoModelFoundException();
+        if (result.isEmpty()) {
+            throw new NoModelFoundException("Could not locate key item with name - " + theKeyItemName);
         }
 
-        return result;
+        return result.get();
     }
 }

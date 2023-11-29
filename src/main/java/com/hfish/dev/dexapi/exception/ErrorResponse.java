@@ -6,7 +6,7 @@ import java.net.http.HttpResponse;
 
 public class ErrorResponse {
     private String message;
-    private String httpResponse;
+    private String httpStatus;
 
     public String getMessage() {
         return message;
@@ -16,11 +16,11 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    public String getHttpResponse() {
-        return httpResponse;
+    public String getHttpStatus() {
+        return httpStatus;
     }
 
-    public void setHttpResponse(String httpResponse) {
-        this.httpResponse = httpResponse;
+    public void setHttpStatus(String httpResponse) {
+        this.httpStatus = httpResponse;
     }
 }

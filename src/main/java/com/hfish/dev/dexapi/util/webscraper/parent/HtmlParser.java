@@ -108,7 +108,9 @@ public abstract class HtmlParser {
 
         if (m.find()) {
             // int '0' refers to the first table data(td) element, containing the model name
-            if (theCurrentElement.select("td").get(0).text().equals(theModelName)) {
+            String currentElementModelName = theCurrentElement.select("td").get(0).text();
+
+            if (currentElementModelName.equals(theModelName)) {
                 return true;
             }
         }
