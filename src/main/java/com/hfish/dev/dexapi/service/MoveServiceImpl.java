@@ -1,16 +1,41 @@
 package com.hfish.dev.dexapi.service;
 
+import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Move;
+import com.hfish.dev.dexapi.util.webscraper.MoveParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+/**
+ * @author haydenfish
+ * @version 11.29.2023
+ */
 @Service
 public class MoveServiceImpl implements MoveService {
+    private MoveParser moveParser;
+
+    @Autowired
+    public MoveServiceImpl(MoveParser moveParser) {
+        this.moveParser = moveParser;
+    }
+
     /**
-     * @param theName
-     * @return
+     * Searches for move with corresponding name, throwing NoModelFoundException if unable to locate
+     * If user enters valid move name, we should always return a corresponding object
+     *
+     * @param theName name field of the move we are searching for
+     * @return Move object if found, throw exception otherwise
      */
     @Override
     public Move findMove(String theName) {
-        return null;
+        Optional<Move> result = Optional.ofNullable(moveParser.findMove(theName));
+
+        if (result.isEmpty()) {
+            throw new NoModelFoundException("Could not locate move with name" + theName);
+        }
+
+        return result.get();
     }
 }

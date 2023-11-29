@@ -9,11 +9,12 @@ import com.hfish.dev.dexapi.util.ApiResource;
  */
 
 public class Move implements ApiResource {
+    // TODO: refactor - remove generation (?)
     private int generation;
     private String name;
     private Type type;
     private String effect;
-    private final static String resourceUrl = "https://pokemondb.net/move/generation/";
+    public final static String resourceUrl = "https://pokemondb.net/move/all";
 
     public Move(int generation, String name, Type type, String effect) {
         this.generation = generation;

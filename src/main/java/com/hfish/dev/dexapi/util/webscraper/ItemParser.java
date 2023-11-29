@@ -30,6 +30,8 @@ public class ItemParser extends HtmlParser {
         return (Item) parseModelElement(theName, Item.resourceUrl);
     }
 
+
+
     @Override
     protected Item mapElementToModel(ArrayList<Element> theAttributeList) {
          String itemName = theAttributeList.get(nameIndex).text();

@@ -26,33 +26,11 @@ public abstract class HtmlParser {
     protected Object parseModelElement(String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
 
-        Document doc = connect(theResourceUrl);
-
-        Element table = doc.select("table").first();
-        Elements rows = table.select("tr");
+        Elements rows = selectAllTableRows(theResourceUrl);
 
         ArrayList<Element> attributeList = selectModelAttributes(rows, theModelName);
 
         return verifyModelExists(attributeList) ? mapElementToModel(attributeList) : null;
-    }
-
-    /**
-     * Connect to html document with Jsoup library, returns the html Document
-     * Throws IOException if connection fails
-     *
-     * @param theResourceUrl url of the site for Jsoup to establish connection to
-     * @return Jsoup Document object with site's html data
-     */
-    private Document connect(String theResourceUrl) {
-        Document doc = null;
-
-        try {
-            doc = Jsoup.connect(theResourceUrl).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return doc;
     }
 
     /**
@@ -84,6 +62,34 @@ public abstract class HtmlParser {
         }
 
         return result.toString();
+    }
+
+    private Elements selectAllTableRows(String theResourceUrl) {
+        Document doc = connect(theResourceUrl);
+
+        Element table = doc.select("table").first();
+        Elements rows = table.select("tr");
+
+        return rows;
+    }
+
+    /**
+     * Connect to html document with Jsoup library, returns the html Document
+     * Throws IOException if connection fails
+     *
+     * @param theResourceUrl url of the site for Jsoup to establish connection to
+     * @return Jsoup Document object with site's html data
+     */
+    private Document connect(String theResourceUrl) {
+        Document doc = null;
+
+        try {
+            doc = Jsoup.connect(theResourceUrl).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return doc;
     }
 
     private ArrayList<Element> selectModelAttributes(Elements theRows, String theModelName) {

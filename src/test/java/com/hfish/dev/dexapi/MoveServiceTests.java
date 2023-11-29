@@ -1,11 +1,10 @@
 package com.hfish.dev.dexapi;
 
+import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.enums.Type;
 import com.hfish.dev.dexapi.model.pokemon.Move;
 import com.hfish.dev.dexapi.service.MoveService;
-import com.hfish.dev.dexapi.util.webscraper.MoveParser;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,17 +15,18 @@ public class MoveServiceTests {
     @Autowired
     MoveService moveService;
 
-    @Mock
-    MoveParser moveParser;
-
     @Test
     public void testFindMove() {
         Move expectedMove = new Move(1, "Acid", Type.POISON, "May lower opponent's Special Defense.");
         Move actualMove = moveService.findMove("Acid");
 
-        assertEquals(expectedMove, actualMove);
+        assertInstanceOf(Move.class, actualMove);
 
-        assertNull(moveService.findMove(" "));
-        assertNull(moveService.findMove("xyz"));
+        assertEquals(expectedMove.getName(), actualMove.getName());
+        assertEquals(expectedMove.getType(), actualMove.getType());
+        assertEquals(expectedMove.getEffect(), actualMove.getEffect());
+
+        assertThrows(NoModelFoundException.class, () -> moveService.findMove(""));
+        assertThrows(NoModelFoundException.class, () -> moveService.findMove("xyz"));
     }
 }
