@@ -5,8 +5,6 @@ This project is intended for **educational** and demo purposes, in order to show
 # dex-api
 ## About the Project
 
-## Setup Guide
-
-## How to use the Api
+## Example Api Calls
 
 ## Additional Info
