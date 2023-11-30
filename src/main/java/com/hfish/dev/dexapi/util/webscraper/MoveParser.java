@@ -2,7 +2,7 @@ package com.hfish.dev.dexapi.util.webscraper;
 
 import com.hfish.dev.dexapi.model.enums.Type;
 import com.hfish.dev.dexapi.model.pokemon.Move;
-import com.hfish.dev.dexapi.util.webscraper.parent.HtmlParser;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @version 11.29.2023
  */
 @Component
-public class MoveParser extends HtmlParser {
+public class MoveParser extends HtmlTableParser {
     private final static int nameIndex = 0;
     private final static int typeIndex = 1;
     private final static int effectIndex = 6;

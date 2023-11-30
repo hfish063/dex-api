@@ -9,12 +9,14 @@ import com.hfish.dev.dexapi.util.ApiResource;
 
 public class Sprite implements ApiResource {
     private int generation;
+    private String pokemonName;
     private boolean shiny;
     private String imgSrcUrl;
-    private final static String resourceUrl = "https://pokemondb.net/sprites/";
+    public final static String resourceUrl = "https://pokemondb.net/sprites/";
 
-    public Sprite(int generation, boolean shiny, String imgSrcUrl) {
+    public Sprite(int generation,String pokemonName, boolean shiny, String imgSrcUrl) {
         this.generation = generation;
+        this.pokemonName = pokemonName;
         this.shiny = shiny;
         this.imgSrcUrl = imgSrcUrl;
     }
@@ -25,6 +27,14 @@ public class Sprite implements ApiResource {
 
     public void setGeneration(int generation) {
         this.generation = generation;
+    }
+
+    public String getPokemonName() {
+        return pokemonName;
+    }
+
+    public void setPokemonName(String pokemonName) {
+        this.pokemonName = pokemonName;
     }
 
     public boolean isShiny() {

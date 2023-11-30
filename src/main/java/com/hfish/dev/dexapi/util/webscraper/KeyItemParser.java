@@ -1,7 +1,7 @@
 package com.hfish.dev.dexapi.util.webscraper;
 
 import com.hfish.dev.dexapi.model.item.KeyItem;
-import com.hfish.dev.dexapi.util.webscraper.parent.HtmlParser;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 @Component
-public class KeyItemParser extends HtmlParser {
+public class KeyItemParser extends HtmlTableParser {
     private static final int nameIndex = 0;
     private static final int descriptionIndex = 1;
 

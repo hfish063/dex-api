@@ -2,7 +2,7 @@ package com.hfish.dev.dexapi.util.webscraper;
 
 import com.hfish.dev.dexapi.model.enums.Category;
 import com.hfish.dev.dexapi.model.item.Item;
-import com.hfish.dev.dexapi.util.webscraper.parent.HtmlParser;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 @Component
-public class ItemParser extends HtmlParser {
+public class ItemParser extends HtmlTableParser {
     private final static int nameIndex = 0;
     private final static int categoryIndex = 1;
     private final static int descriptionIndex = 2;
@@ -29,8 +29,6 @@ public class ItemParser extends HtmlParser {
     public Item findItem(String theName) {
         return (Item) parseModelElement(theName, Item.resourceUrl);
     }
-
-
 
     @Override
     protected Item mapElementToModel(ArrayList<Element> theAttributeList) {

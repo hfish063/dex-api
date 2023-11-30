@@ -1,21 +1,15 @@
 package com.hfish.dev.dexapi.util.webscraper.parent;
 
-import org.jsoup.Jsoup;
+import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlParser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author haydenfish
- * @version 11.28.2023
- */
-
-public abstract class HtmlParser {
+public abstract class HtmlTableParser extends HtmlParser {
     /**
      * Parse html table data, finding a row containing desired model, returns an object containing model fields
      *
@@ -40,7 +34,7 @@ public abstract class HtmlParser {
      * @param theModelName name of the object name we are formatting
      * @return String consisting of word(s) with capitalized first letter
      */
-    private String formatModelName(String theModelName) {
+    protected String formatModelName(String theModelName) {
         final int CHAR_LIMIT = 100;
         int length = theModelName.length();
 
@@ -71,25 +65,6 @@ public abstract class HtmlParser {
         Elements rows = table.select("tr");
 
         return rows;
-    }
-
-    /**
-     * Connect to html document with Jsoup library, returns the html Document
-     * Throws IOException if connection fails
-     *
-     * @param theResourceUrl url of the site for Jsoup to establish connection to
-     * @return Jsoup Document object with site's html data
-     */
-    private Document connect(String theResourceUrl) {
-        Document doc = null;
-
-        try {
-            doc = Jsoup.connect(theResourceUrl).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return doc;
     }
 
     private ArrayList<Element> selectModelAttributes(Elements theRows, String theModelName) {
