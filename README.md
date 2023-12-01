@@ -4,7 +4,88 @@ This project is intended for **educational** and demo purposes, in order to show
 
 # dex-api
 ## About the Project
+- Jsoup webscraper wrapped in a REST Api
+- **NOTE:** Capitalization does not matter
 
 ## Example Api Calls
+### Find a Pokemon move:
+Api call
+```
+/api/move/absord
+```
+
+Json response
+```json
+{
+    "generation": 1,
+    "name": "Absorb",
+    "type": "GRASS",
+    "effect": "User recovers half the HP inflicted on opponent.",
+    "resourceUrl": "https://pokemondb.net/move/all"
+}
+```
+
+### Find Pokemon's stats:
+Api call
+```
+/api/stats/rayquaza
+```
+
+Json response
+```json
+{
+    "hp": 105,
+    "attack": 150,
+    "defense": 90,
+    "spatk": 150,
+    "spdef": 90,
+    "speed": 95,
+    "total": 680,
+    "resourceUrl": "https://pokemondb.net/pokedex/all"
+}
+```
+
+### Find an item:
+Api call
+```
+/api/item/ultra ball
+```
+
+Json response
+```json
+{
+    "name": "Ultra Ball",
+    "category": "POKEBALLS",
+    "effect": "Catches wild Pokémon with 2x the rate of a Poké Ball.",
+    "resourceUrl": "https://pokemondb.net/item/all"
+}
+```
+
+Api call for key items
+```
+/api/keyItem/bike
+```
+
+Json response
+```json
+{
+    "name": "Bike",
+    "effect": "A folding Bike that enables a rider to get around much faster than with Running Shoes.",
+    "resourceUrl": "https://pokemondb.net/item/type/key"
+}
+```
 
 ## Additional Info
+### Error handling:
+Finding data relies on valid model names, and spelling e.g. if a user searches for Pokemon that does not exist, an exception is thrown
+
+*NOTE: Capitalization does not matter in the above case*
+
+Example of mispelled name
+```json
+{
+    "message": "Could not locate stats for pokemon - pkachu",
+    "httpStatus": "404 NOT_FOUND"
+}
+```
+
