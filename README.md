@@ -1,13 +1,13 @@
 # [DISCLAIMER]
 This project is intended for **educational** and demo purposes, in order to showcase my skillset.  It violates the **TOS** of pokemondb.net, and is not being used outside of the aforementioned areas.
 
-## Table of Contents
+## 🚩 Table of Contents
 - [About](#about-the-project)
 - [Examples](#example-api-calls)
 - [More](#additional-info)
 
 # dex-api
-## About the Project
+## 🔧 About the Project
 - Jsoup webscraper wrapped in a REST Api
 - Directly parses html data to generate Json responses
 - Find information on various Pokemon, and items from the video game series
@@ -22,7 +22,7 @@ This project is intended for **educational** and demo purposes, in order to show
 
 **Not** intended for public or distributed use
 
-## Example Api Calls
+## 🎨 Example Api Calls
 ### Find a Pokemon move:
 Api call
 ```
@@ -90,7 +90,7 @@ Json response
 }
 ```
 
-## Additional Info
+## 📜 Additional Info
 ### Error handling:
 Finding data relies on valid model names, and spelling e.g. if a user searches for Pokemon that does not exist, an exception is thrown
 
