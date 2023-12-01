@@ -6,6 +6,17 @@ This project is intended for **educational** and demo purposes, in order to show
 ## About the Project
 - Jsoup webscraper wrapped in a REST Api
 - Directly parses html data to generate Json responses
+- Find information on various Pokemon, and items from the video game series
+    - `Pokemon`
+    - `Stats`
+    - `Moves`
+    - `Abilities`
+    - `Items`
+    - `Sprites`
+- Lightweight respone format, extremely easy to use and read
+
+
+**Not** intended for public or distributed use
 
 ## Example Api Calls
 ### Find a Pokemon move:
