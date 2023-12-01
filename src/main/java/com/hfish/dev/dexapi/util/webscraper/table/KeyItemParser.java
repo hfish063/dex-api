@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 @Component
 public class KeyItemParser extends HtmlTableParser {
+    // index variables represent the index of specified data piece in attribute list
     private static final int nameIndex = 0;
     private static final int descriptionIndex = 1;
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 @Component
 public class PokemonIdParser extends HtmlTableParser {
+    // index variables represent the index of specified data piece in attribute list
     private final static int idIndex = 0;
 
     public PokemonId findPokemonId(String thePokemonName) {

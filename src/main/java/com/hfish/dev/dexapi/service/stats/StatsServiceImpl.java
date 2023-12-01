@@ -19,7 +19,7 @@ public class StatsServiceImpl implements StatsService {
 
     /**
      * Finds the corresponding stats for given pokemon name, throw NoModelFoundException if stats do not exist
-     * for the name
+     * for the given name
      *
      * @param thePokemonName name of the pokemon we wish to find stats for
      * @return Stats object containing all the data we parsed from html table

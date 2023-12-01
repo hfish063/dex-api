@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 @Component
 public class MoveParser extends HtmlTableParser {
+    // index variables represent the index of specified data piece in attribute list
     private final static int nameIndex = 0;
     private final static int typeIndex = 1;
     private final static int effectIndex = 6;

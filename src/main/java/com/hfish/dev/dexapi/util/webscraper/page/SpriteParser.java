@@ -16,11 +16,13 @@ import java.util.ArrayList;
 @Component
 public class SpriteParser extends HtmlPageParser {
     /**
+     * Connects to html document and parses the data to find corresponding elements
+     * Map the attributes of element containing Sprite info to a Sprite object
      *
      * @param theGeneration generation of sprite we are looking, every pokemon has a different sprite for each
      * @param thePokemonName name of the pokemon we are finding sprite for
      * @param isShiny if pokemon is shiny, find the shiny version of sprite, else the normal one
-     * @return Sprite object containing corresponding fields
+     * @return Sprite object containing corresponding fields, null if unable to locate
      */
     public Sprite findSprite(int theGeneration, String thePokemonName, boolean isShiny) {
         return parseSpriteElement(theGeneration, thePokemonName, isShiny, Sprite.resourceUrl);
@@ -47,7 +49,6 @@ public class SpriteParser extends HtmlPageParser {
             return null;
         }
 
-        //Element table = doc.select("table").first();
         Element firstRow = doc.select("tbody").select("tr").first();
 
         return firstRow;

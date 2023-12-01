@@ -23,16 +23,19 @@ public class SpriteServiceImpl implements SpriteService {
     }
 
     /**
-     * @param theGeneration
-     * @param thePokemonName
-     * @return
+     * Find the non-shiny version of pokemon sprite from given generation, throws NoModelFoundException if unable to locate
+     * Should always return a corresponding object if input data is valid
+     *
+     * @param theGeneration generation of pokemon sprite to find, each generation has various different sprites
+     * @param thePokemonName name of the pokemon to find sprite for
+     * @return Sprite object with matching fields
      */
     @Override
     public Sprite findNormalSprite(int theGeneration, String thePokemonName) {
         Optional<Sprite> result = Optional.ofNullable(spriteParser.findSprite(theGeneration, thePokemonName, false));
 
         if (result.isEmpty()) {
-            throw new NoModelFoundException("Could not locate Sprite for Pokemon - " + thePokemonName);
+            throw new NoModelFoundException("Could not locate Sprite for Pokemon/Generation - " + thePokemonName + "/" + theGeneration);
         }
 
         return result.get();
@@ -48,7 +51,7 @@ public class SpriteServiceImpl implements SpriteService {
         Optional<Sprite> result = Optional.ofNullable(spriteParser.findSprite(theGeneration, thePokemonName, true));
 
         if (result.isEmpty()) {
-            throw new NoModelFoundException("Could not locate shiny Sprite for Pokemon - " + thePokemonName);
+            throw new NoModelFoundException("Could not locate shiny Sprite for Pokemon/Generation - " + thePokemonName + "/" + theGeneration);
         }
 
         return result.get();

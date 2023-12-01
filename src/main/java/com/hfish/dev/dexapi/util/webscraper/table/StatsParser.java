@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 @Component
 public class StatsParser extends HtmlTableParser {
+    // index variables represent the index of specified data piece in attribute list
     private final static int hpIndex = 4;
     private final static int attackIndex = 5;
     private final static int defenseIndex = 6;
@@ -21,12 +22,18 @@ public class StatsParser extends HtmlTableParser {
     private final static int spdefIndex = 8;
     private final static int speedIndex = 9;
 
+    /**
+     *
+     * @param thePokemonName name of the pokemon to find stats information for
+     * @return Stats object containing the data parsed from html table, null if unable to locate
+     */
     public Stats findStats(String thePokemonName) {
         return (Stats) parseModelElement(1, thePokemonName, Stats.resourceUrl);
     }
 
     @Override
     protected Stats mapElementToModel(ArrayList<Element> theAttributeList) {
+        // map elements in the attribute list to corresponding object fields
         int hp = Integer.parseInt(theAttributeList.get(hpIndex).text());
         int atk = Integer.parseInt(theAttributeList.get(attackIndex).text());
         int def = Integer.parseInt(theAttributeList.get(defenseIndex).text());
