@@ -18,7 +18,7 @@ This project is intended for **educational** and demo purposes, in order to show
     - `Items`
     - `Sprites`
 - Lightweight respone format, extremely easy to use and read
-- Underlying webscraping functionality uses shared base class to find data held in html tables.  Simply provide model name, column containing primary id, and the page url.
+- Underlying webscraping functionality is abstracted to allow for easy implementation of new features, and reusability.
 
 
 **Not** intended for public or distributed use
