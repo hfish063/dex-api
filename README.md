@@ -1,6 +1,10 @@
 # [DISCLAIMER]
 This project is intended for **educational** and demo purposes, in order to showcase my skillset.  It violates the **TOS** of pokemondb.net, and is not being used outside of the aforementioned areas.
 
+## Table of Contents
+- [About](#about-the-project)
+- [Examples](#example-api-calls)
+- [More](#additional-info)
 
 # dex-api
 ## About the Project
