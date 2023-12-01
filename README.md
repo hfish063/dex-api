@@ -5,7 +5,7 @@ This project is intended for **educational** and demo purposes, in order to show
 # dex-api
 ## About the Project
 - Jsoup webscraper wrapped in a REST Api
-- **NOTE:** Capitalization does not matter
+- Directly parses html data to generate Json responses
 
 ## Example Api Calls
 ### Find a Pokemon move:
