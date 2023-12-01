@@ -90,6 +90,32 @@ Json response
 }
 ```
 
+### Find a sprite (by generation):
+Api call
+```
+/api/sprite/giratina/5
+```
+
+Json response
+```json
+{
+    "generation": 5,
+    "pokemonName": "giratina",
+    "shiny": false,
+    "imgSrcUrl": "https://img.pokemondb.net/sprites/scarlet-violet/normal/1x/giratina-altered.png",
+    "resourceUrl": "https://pokemondb.net/sprites/"
+}
+```
+
+![Giratina sprite](https://img.pokemondb.net/sprites/scarlet-violet/normal/1x/giratina-altered.png)
+
+Api call for shiny version
+```
+/api/sprite/shiny/giratina/5
+```
+
+Json response
+
 ## 📜 Additional Info
 ### Error handling:
 Finding data relies on valid model names, and spelling e.g. if a user searches for Pokemon that does not exist, an exception is thrown
