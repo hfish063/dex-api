@@ -1,8 +1,7 @@
-package com.hfish.dev.dexapi;
+package com.hfish.dev.dexapi.parser;
 
-import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Sprite;
-import com.hfish.dev.dexapi.util.webscraper.SpriteParser;
+import com.hfish.dev.dexapi.util.webscraper.page.SpriteParser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

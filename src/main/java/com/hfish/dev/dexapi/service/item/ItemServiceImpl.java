@@ -3,8 +3,8 @@ package com.hfish.dev.dexapi.service.item;
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
-import com.hfish.dev.dexapi.util.webscraper.ItemParser;
-import com.hfish.dev.dexapi.util.webscraper.KeyItemParser;
+import com.hfish.dev.dexapi.util.webscraper.table.ItemParser;
+import com.hfish.dev.dexapi.util.webscraper.table.KeyItemParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

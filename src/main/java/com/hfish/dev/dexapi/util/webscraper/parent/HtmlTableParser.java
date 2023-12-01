@@ -1,6 +1,6 @@
 package com.hfish.dev.dexapi.util.webscraper.parent;
 
-import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlParser;
+import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlPageParser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class HtmlTableParser extends HtmlParser {
+public abstract class HtmlTableParser extends HtmlPageParser {
     /**
      * Parse html table data, finding a row containing desired model, returns an object containing model fields
      *
@@ -17,45 +17,14 @@ public abstract class HtmlTableParser extends HtmlParser {
      * @param theResourceUrl url to the webpage containing table of corresponding models
      * @return object if model is found in table, else null
      */
-    protected Object parseModelElement(String theModelName, String theResourceUrl) {
+    protected Object parseModelElement(int theKeyColumn, String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
 
         Elements rows = selectAllTableRows(theResourceUrl);
 
-        ArrayList<Element> attributeList = selectModelAttributes(rows, theModelName);
+        ArrayList<Element> attributeList = selectModelAttributes(theKeyColumn, rows, theModelName);
 
         return verifyModelExists(attributeList) ? mapElementToModel(attributeList) : null;
-    }
-
-    /**
-     * Formats the name attribute of model
-     * Capitalizes first letter of each word in String, ensuring it corresponds to the format of html document
-     *
-     * @param theModelName name of the object name we are formatting
-     * @return String consisting of word(s) with capitalized first letter
-     */
-    protected String formatModelName(String theModelName) {
-        final int CHAR_LIMIT = 100;
-        int length = theModelName.length();
-
-        StringBuilder result = new StringBuilder();
-
-        // toLowerCase is important, removes possibility of random characters being capitalized
-        theModelName = theModelName.toLowerCase();
-
-        for(int i = 0; i < length && length < CHAR_LIMIT; i++) {
-            char currentChar = theModelName.charAt(i);
-
-            if (i > 0 && theModelName.charAt(i - 1) == ' ') {
-                result.append(Character.toUpperCase(currentChar));
-            } else if (i == 0) {
-                result.append(Character.toUpperCase(currentChar));
-            } else {
-                result.append(currentChar);
-            }
-        }
-
-        return result.toString();
     }
 
     private Elements selectAllTableRows(String theResourceUrl) {
@@ -67,13 +36,13 @@ public abstract class HtmlTableParser extends HtmlParser {
         return rows;
     }
 
-    private ArrayList<Element> selectModelAttributes(Elements theRows, String theModelName) {
+    private ArrayList<Element> selectModelAttributes(int theKeyColumn, Elements theRows, String theModelName) {
         ArrayList<Element> attributeList = new ArrayList<>();
 
         for(int i = 1; i < theRows.size(); i++) {
             Element currentElement = theRows.get(i);
 
-            if (elementContainsModel(theModelName, currentElement)) {
+            if (elementContainsModel(theKeyColumn, theModelName, currentElement)) {
                 attributeList = currentElement.select("td");
             }
         }
@@ -81,7 +50,7 @@ public abstract class HtmlTableParser extends HtmlParser {
         return attributeList;
     }
 
-    private boolean elementContainsModel(String theModelName, Element theCurrentElement) {
+    private boolean elementContainsModel(int theKeyColumn, String theModelName, Element theCurrentElement) {
         String modelNameRegex = "\\b" + theModelName + "\\b";
 
         Pattern p = Pattern.compile(modelNameRegex);
@@ -89,7 +58,7 @@ public abstract class HtmlTableParser extends HtmlParser {
 
         if (m.find()) {
             // int '0' refers to the first table data(td) element, containing the model name
-            String currentElementModelName = theCurrentElement.select("td").get(0).text();
+            String currentElementModelName = theCurrentElement.select("td").get(theKeyColumn).text();
 
             if (currentElementModelName.equals(theModelName)) {
                 return true;

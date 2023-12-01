@@ -1,8 +1,8 @@
-package com.hfish.dev.dexapi.service;
+package com.hfish.dev.dexapi.service.move;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Move;
-import com.hfish.dev.dexapi.util.webscraper.MoveParser;
+import com.hfish.dev.dexapi.util.webscraper.table.MoveParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

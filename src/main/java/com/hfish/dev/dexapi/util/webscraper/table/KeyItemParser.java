@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi.util.webscraper;
+package com.hfish.dev.dexapi.util.webscraper.table;
 
 import com.hfish.dev.dexapi.model.item.KeyItem;
 import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
@@ -25,7 +25,7 @@ public class KeyItemParser extends HtmlTableParser {
      * @return a key item object with corresponding name field, null if not found
      */
     public KeyItem findKeyItem(String theName) {
-        return (KeyItem) parseModelElement(theName, KeyItem.resourceUrl);
+        return (KeyItem) parseModelElement(0, theName, KeyItem.resourceUrl);
     }
 
     @Override

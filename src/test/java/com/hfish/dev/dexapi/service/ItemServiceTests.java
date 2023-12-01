@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi;
+package com.hfish.dev.dexapi.service;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.enums.Category;

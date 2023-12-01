@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi.util.webscraper;
+package com.hfish.dev.dexapi.util.webscraper.table;
 
 import com.hfish.dev.dexapi.model.enums.Category;
 import com.hfish.dev.dexapi.model.item.Item;
@@ -27,7 +27,7 @@ public class ItemParser extends HtmlTableParser {
      * @return an item with corresponding name field, null if not found
      */
     public Item findItem(String theName) {
-        return (Item) parseModelElement(theName, Item.resourceUrl);
+        return (Item) parseModelElement(0, theName, Item.resourceUrl);
     }
 
     @Override

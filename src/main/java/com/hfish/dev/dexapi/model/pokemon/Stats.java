@@ -15,11 +15,7 @@ public class Stats implements ApiResource {
     private int spdef;
     private int speed;
     private int total;
-    private final static String resourceUrl = "https://pokemondb.net/pokedex/";
-
-    public Stats() {
-
-    }
+    public final static String resourceUrl = "https://pokemondb.net/pokedex/all";
 
     public Stats(int hp, int attack, int defense, int spatk, int spdef, int speed) {
         this.hp = hp;

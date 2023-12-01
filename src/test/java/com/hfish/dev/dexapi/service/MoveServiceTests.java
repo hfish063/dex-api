@@ -1,9 +1,9 @@
-package com.hfish.dev.dexapi;
+package com.hfish.dev.dexapi.service;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.enums.Type;
 import com.hfish.dev.dexapi.model.pokemon.Move;
-import com.hfish.dev.dexapi.service.MoveService;
+import com.hfish.dev.dexapi.service.move.MoveService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

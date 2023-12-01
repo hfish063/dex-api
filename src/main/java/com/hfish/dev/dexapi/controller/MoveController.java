@@ -1,7 +1,7 @@
 package com.hfish.dev.dexapi.controller;
 
 import com.hfish.dev.dexapi.model.pokemon.Move;
-import com.hfish.dev.dexapi.service.MoveService;
+import com.hfish.dev.dexapi.service.move.MoveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

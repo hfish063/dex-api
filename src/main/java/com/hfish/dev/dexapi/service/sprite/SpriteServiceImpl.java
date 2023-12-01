@@ -1,8 +1,8 @@
-package com.hfish.dev.dexapi.service;
+package com.hfish.dev.dexapi.service.sprite;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Sprite;
-import com.hfish.dev.dexapi.util.webscraper.SpriteParser;
+import com.hfish.dev.dexapi.util.webscraper.page.SpriteParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

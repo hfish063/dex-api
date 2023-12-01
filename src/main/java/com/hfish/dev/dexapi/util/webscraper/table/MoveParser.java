@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi.util.webscraper;
+package com.hfish.dev.dexapi.util.webscraper.table;
 
 import com.hfish.dev.dexapi.model.enums.Type;
 import com.hfish.dev.dexapi.model.pokemon.Move;
@@ -26,7 +26,7 @@ public class MoveParser extends HtmlTableParser {
      * @return Corresponding Move object if found, null otherwise
      */
     public Move findMove(String theName) {
-        return (Move) parseModelElement(theName, Move.resourceUrl);
+        return (Move) parseModelElement(0, theName, Move.resourceUrl);
     }
 
     @Override

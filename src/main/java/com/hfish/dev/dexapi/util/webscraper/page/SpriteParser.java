@@ -1,7 +1,7 @@
-package com.hfish.dev.dexapi.util.webscraper;
+package com.hfish.dev.dexapi.util.webscraper.page;
 
 import com.hfish.dev.dexapi.model.pokemon.Sprite;
-import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlParser;
+import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlPageParser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 @Component
-public class SpriteParser extends HtmlParser {
+public class SpriteParser extends HtmlPageParser {
     /**
      *
      * @param theGeneration generation of sprite we are looking, every pokemon has a different sprite for each
@@ -47,7 +47,7 @@ public class SpriteParser extends HtmlParser {
             return null;
         }
 
-        Element table = doc.select("table").first();
+        //Element table = doc.select("table").first();
         Element firstRow = doc.select("tbody").select("tr").first();
 
         return firstRow;

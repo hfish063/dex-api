@@ -1,7 +1,7 @@
 package com.hfish.dev.dexapi.controller;
 
 import com.hfish.dev.dexapi.model.pokemon.Sprite;
-import com.hfish.dev.dexapi.service.SpriteService;
+import com.hfish.dev.dexapi.service.sprite.SpriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

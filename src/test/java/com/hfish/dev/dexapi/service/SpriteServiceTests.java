@@ -1,4 +1,4 @@
-package com.hfish.dev.dexapi;
+package com.hfish.dev.dexapi.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
