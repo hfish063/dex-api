@@ -2,6 +2,7 @@ package com.hfish.dev.dexapi.service.stats;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Stats;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import com.hfish.dev.dexapi.util.webscraper.table.StatsParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class StatsServiceImpl implements StatsService {
-    StatsParser statsParser;
+    HtmlTableParser statsParser;
 
     @Autowired
     public StatsServiceImpl(StatsParser statsParser) {
@@ -26,7 +27,7 @@ public class StatsServiceImpl implements StatsService {
      */
     @Override
     public Stats findStats(String thePokemonName) {
-        Optional<Stats> result = Optional.ofNullable(statsParser.findByName(thePokemonName));
+        Optional<Stats> result = Optional.ofNullable((Stats) statsParser.findByName(thePokemonName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate stats for pokemon - " + thePokemonName);

@@ -3,6 +3,7 @@ package com.hfish.dev.dexapi.service.item;
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.item.Item;
 import com.hfish.dev.dexapi.model.item.KeyItem;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import com.hfish.dev.dexapi.util.webscraper.table.ItemParser;
 import com.hfish.dev.dexapi.util.webscraper.table.KeyItemParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService{
-    private ItemParser itemParser;
-    private KeyItemParser keyItemParser;
+    private HtmlTableParser itemParser;
+    private HtmlTableParser keyItemParser;
 
     @Autowired
     public ItemServiceImpl(ItemParser itemParser, KeyItemParser keyItemParser) {
@@ -35,13 +36,13 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public Item findItem(String theItemName) {
-        Optional<Object> result = Optional.ofNullable(itemParser.findByName(theItemName));
+        Optional<Item> result = Optional.ofNullable((Item) itemParser.findByName(theItemName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate item with name - " + theItemName);
         }
 
-        return (Item) result.get();
+        return result.get();
     }
 
     /**
@@ -52,7 +53,7 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public KeyItem findKeyItem(String theKeyItemName) {
-        Optional<KeyItem> result = Optional.ofNullable(keyItemParser.findByName(theKeyItemName));
+        Optional<KeyItem> result = Optional.ofNullable((KeyItem) keyItemParser.findByName(theKeyItemName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate key item with name - " + theKeyItemName);

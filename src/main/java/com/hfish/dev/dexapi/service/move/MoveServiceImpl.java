@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 @Service
 public class MoveServiceImpl implements MoveService {
-    private MoveParser moveParser;
+    private HtmlTableParser moveParser;
 
     @Autowired
     public MoveServiceImpl(MoveParser moveParser) {
@@ -31,7 +31,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public Move findMove(String theName) {
-        Optional<Move> result = Optional.ofNullable(moveParser.findByName(theName));
+        Optional<Move> result = Optional.ofNullable((Move) moveParser.findByName(theName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate move with name" + theName);
