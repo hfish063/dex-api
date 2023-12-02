@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// TODO: Optional<Object> return type - avoid type casting in service classes
 public abstract class HtmlTableParser extends HtmlPageParser {
     /**
      * Provides implementation for searching html table for element with matching name, and return an ApiResource object
@@ -28,7 +29,7 @@ public abstract class HtmlTableParser extends HtmlPageParser {
      * @param theAttributeList list of attributes to element containing our required model fields
      * @return instance of model being searched for
      */
-    protected abstract Object mapElementToModel(ArrayList<Element> theAttributeList);
+    protected abstract ApiResource mapElementToModel(ArrayList<Element> theAttributeList);
 
     /**
      * Parse html table data, finding a row containing desired model, returns an object containing model fields
@@ -37,7 +38,7 @@ public abstract class HtmlTableParser extends HtmlPageParser {
      * @param theResourceUrl url to the webpage containing table of corresponding models
      * @return object if model is found in table, else null
      */
-    protected Object parseModelElement(int theKeyColumn, String theModelName, String theResourceUrl) {
+    protected ApiResource parseModelElement(int theKeyColumn, String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
 
         Elements rows = getAllTableRows(theResourceUrl);

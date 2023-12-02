@@ -31,7 +31,7 @@ public class MoveParser extends HtmlTableParser {
     }
 
     @Override
-    protected Object mapElementToModel(ArrayList<Element> theAttributeList) {
+    protected Move mapElementToModel(ArrayList<Element> theAttributeList) {
         String moveName = theAttributeList.get(nameIndex).text();
         Type moveType = Type.valueOf(theAttributeList.get(typeIndex).text().toUpperCase());
         String moveEffect = theAttributeList.get(effectIndex).text();
