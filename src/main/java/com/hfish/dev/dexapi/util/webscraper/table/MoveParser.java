@@ -26,7 +26,7 @@ public class MoveParser extends HtmlTableParser {
      * @param theName name of the move to search for
      * @return Corresponding Move object if found, null otherwise
      */
-    public Move findMove(String theName) {
+    public Move findByName(String theName) {
         return (Move) parseModelElement(0, theName, Move.resourceUrl);
     }
 

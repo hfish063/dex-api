@@ -32,16 +32,16 @@ public class SpriteParser extends HtmlPageParser {
         Element row = null;
 
         if (!isShiny) {
-            row = selectNormalSpriteRow(theResourceUrl, thePokemonName);
+            row = getNormalSpriteRow(theResourceUrl, thePokemonName);
         } else {
             // TODO: select shiny row
-            row = selectShinySpriteRow();
+            row = getShinySpriteRow();
         }
 
-        return row != null ? selectSpriteImage(row, theGeneration, thePokemonName) : null;
+        return row != null ? getSpriteImage(row, theGeneration, thePokemonName) : null;
     }
 
-    private Element selectNormalSpriteRow(String theResourceUrl, String thePokemonName) {
+    private Element getNormalSpriteRow(String theResourceUrl, String thePokemonName) {
         Document doc = connect(Sprite.resourceUrl + thePokemonName);
 
         // exit the method and return null if connection fails
@@ -54,11 +54,12 @@ public class SpriteParser extends HtmlPageParser {
         return firstRow;
     }
 
-    private Element selectShinySpriteRow() {
+    private Element getShinySpriteRow() {
         return null;
     }
 
-    private Sprite selectSpriteImage(Element theRow, int theGeneration, String thePokemonName) {
+    private Sprite getSpriteImage(Element theRow, int theGeneration, String thePokemonName) {
+        // finds the img url attribute in given row
         ArrayList<Element> imgUrlList = theRow.select("td").select("img");
 
         return mapElementToModel(imgUrlList, theGeneration, thePokemonName);

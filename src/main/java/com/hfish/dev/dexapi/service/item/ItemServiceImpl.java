@@ -35,13 +35,13 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public Item findItem(String theItemName) {
-        Optional<Item> result = Optional.ofNullable(itemParser.findItem(theItemName));
+        Optional<Object> result = Optional.ofNullable(itemParser.findByName(theItemName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate item with name - " + theItemName);
         }
 
-        return result.get();
+        return (Item) result.get();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ItemServiceImpl implements ItemService{
      */
     @Override
     public KeyItem findKeyItem(String theKeyItemName) {
-        Optional<KeyItem> result = Optional.ofNullable(keyItemParser.findKeyItem(theKeyItemName));
+        Optional<KeyItem> result = Optional.ofNullable(keyItemParser.findByName(theKeyItemName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate key item with name - " + theKeyItemName);

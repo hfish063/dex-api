@@ -16,12 +16,12 @@ public class StatsParserTests {
     @Test
     public void testFindStats() {
         Stats expectedStats = new Stats(45, 49, 49, 65, 65, 45);
-        Stats actualStats = statsParser.findStats("Bulbasaur");
+        Stats actualStats = statsParser.findByName("Bulbasaur");
 
         assertInstanceOf(Stats.class, actualStats);
 
         assertEquals(expectedStats.getTotal(), actualStats.getTotal());
 
-        assertNull(statsParser.findStats(""));
+        assertNull(statsParser.findByName(""));
     }
 }

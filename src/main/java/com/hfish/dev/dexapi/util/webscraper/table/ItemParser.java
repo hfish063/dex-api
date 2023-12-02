@@ -27,7 +27,7 @@ public class ItemParser extends HtmlTableParser {
      * @param theName name of the item we are searching for
      * @return an item with corresponding name field, null if not found
      */
-    public Item findItem(String theName) {
+    public Item findByName(String theName) {
         return (Item) parseModelElement(0, theName, Item.resourceUrl);
     }
 

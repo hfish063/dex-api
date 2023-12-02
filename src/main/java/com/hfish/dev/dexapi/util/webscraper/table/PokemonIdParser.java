@@ -12,7 +12,7 @@ public class PokemonIdParser extends HtmlTableParser {
     // index variables represent the index of specified data piece in attribute list
     private final static int idIndex = 0;
 
-    public PokemonId findPokemonId(String thePokemonName) {
+    public PokemonId findByName(String thePokemonName) {
         return (PokemonId) parseModelElement(1, thePokemonName, PokemonId.resourceUrl);
     }
 

@@ -16,12 +16,12 @@ public class PokemonIdParserTests {
     @Test
     public void testFindPokemonId() {
         PokemonId expectedId = new PokemonId("0001");
-        PokemonId actualId = pokemonIdParser.findPokemonId("Bulbasaur");
+        PokemonId actualId = pokemonIdParser.findByName("Bulbasaur");
 
         assertInstanceOf(PokemonId.class, actualId);
 
         assertEquals(expectedId.getId(), actualId.getId());
 
-        assertNull(pokemonIdParser.findPokemonId(""));
+        assertNull(pokemonIdParser.findByName(""));
     }
 }

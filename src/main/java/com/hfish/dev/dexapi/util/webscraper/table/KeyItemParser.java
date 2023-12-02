@@ -25,7 +25,7 @@ public class KeyItemParser extends HtmlTableParser {
      * @param theName name of the key item we are searching for
      * @return a key item object with corresponding name field, null if not found
      */
-    public KeyItem findKeyItem(String theName) {
+    public KeyItem findByName(String theName) {
         return (KeyItem) parseModelElement(0, theName, KeyItem.resourceUrl);
     }
 

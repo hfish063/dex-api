@@ -2,6 +2,7 @@ package com.hfish.dev.dexapi.service.move;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Move;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import com.hfish.dev.dexapi.util.webscraper.table.MoveParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public Move findMove(String theName) {
-        Optional<Move> result = Optional.ofNullable(moveParser.findMove(theName));
+        Optional<Move> result = Optional.ofNullable(moveParser.findByName(theName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate move with name" + theName);

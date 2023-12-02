@@ -26,7 +26,7 @@ public class StatsServiceImpl implements StatsService {
      */
     @Override
     public Stats findStats(String thePokemonName) {
-        Optional<Stats> result = Optional.ofNullable(statsParser.findStats(thePokemonName));
+        Optional<Stats> result = Optional.ofNullable(statsParser.findByName(thePokemonName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate stats for pokemon - " + thePokemonName);

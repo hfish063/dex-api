@@ -1,5 +1,6 @@
 package com.hfish.dev.dexapi.util.webscraper.parent;
 
+import com.hfish.dev.dexapi.util.ApiResource;
 import com.hfish.dev.dexapi.util.webscraper.parent.base.HtmlPageParser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,6 +12,25 @@ import java.util.regex.Pattern;
 
 public abstract class HtmlTableParser extends HtmlPageParser {
     /**
+     * Provides implementation for searching html table for element with matching name, and return an ApiResource object
+     * with element attributes as fields.  Returns null if not found.
+     *
+     * @param theName name of the element to search for
+     * @return ApiResource object containing data from html table, null if element is not found
+     */
+    public abstract ApiResource findByName(String theName);
+
+    /**
+     * Provides implementation for taking list of attributes, and passing them to model constructor to create a new
+     * object
+     * Defined in class, as model fields are not universal
+     *
+     * @param theAttributeList list of attributes to element containing our required model fields
+     * @return instance of model being searched for
+     */
+    protected abstract Object mapElementToModel(ArrayList<Element> theAttributeList);
+
+    /**
      * Parse html table data, finding a row containing desired model, returns an object containing model fields
      *
      * @param theModelName name of the model we are looking for
@@ -20,14 +40,14 @@ public abstract class HtmlTableParser extends HtmlPageParser {
     protected Object parseModelElement(int theKeyColumn, String theModelName, String theResourceUrl) {
         theModelName = formatModelName(theModelName);
 
-        Elements rows = selectAllTableRows(theResourceUrl);
+        Elements rows = getAllTableRows(theResourceUrl);
 
-        ArrayList<Element> attributeList = selectModelAttributes(theKeyColumn, rows, theModelName);
+        ArrayList<Element> attributeList = getRowAttributes(theKeyColumn, rows, theModelName);
 
         return verifyModelExists(attributeList) ? mapElementToModel(attributeList) : null;
     }
 
-    private Elements selectAllTableRows(String theResourceUrl) {
+    private Elements getAllTableRows(String theResourceUrl) {
         Document doc = connect(theResourceUrl);
 
         Element table = doc.select("table").first();
@@ -36,12 +56,13 @@ public abstract class HtmlTableParser extends HtmlPageParser {
         return rows;
     }
 
-    private ArrayList<Element> selectModelAttributes(int theKeyColumn, Elements theRows, String theModelName) {
+    private ArrayList<Element> getRowAttributes(int theKeyColumn, Elements theRows, String theModelName) {
         ArrayList<Element> attributeList = new ArrayList<>();
 
         for(int i = 1; i < theRows.size(); i++) {
             Element currentElement = theRows.get(i);
 
+            // if the data we are searching for resides in the current row
             if (elementContainsModel(theKeyColumn, theModelName, currentElement)) {
                 attributeList = currentElement.select("td");
             }
@@ -71,14 +92,4 @@ public abstract class HtmlTableParser extends HtmlPageParser {
     private boolean verifyModelExists(ArrayList<Element> theAttributeList) {
         return !theAttributeList.isEmpty();
     }
-
-    /**
-     * Provides implementation for taking list of attributes, and passing them to model constructor to create a new
-     * object
-     * Defined in class, as model fields are not universal
-     *
-     * @param theAttributeList list of attributes to element containing our required model fields
-     * @return instance of model being searched for
-     */
-    protected abstract Object mapElementToModel(ArrayList<Element> theAttributeList);
 }

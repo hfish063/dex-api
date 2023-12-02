@@ -27,7 +27,7 @@ public class StatsParser extends HtmlTableParser {
      * @param thePokemonName name of the pokemon to find stats information for
      * @return Stats object containing the data parsed from html table, null if unable to locate
      */
-    public Stats findStats(String thePokemonName) {
+    public Stats findByName(String thePokemonName) {
         return (Stats) parseModelElement(1, thePokemonName, Stats.resourceUrl);
     }
 
