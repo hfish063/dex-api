@@ -6,7 +6,7 @@ public class Ability implements ApiResource {
     private String name;
     private boolean hidden;
     private String effect;
-    private final static String resourceUrl = "https://pokemondb.net/ability";
+    public final static String resourceUrl = "https://pokemondb.net/ability";
 
     public Ability(String name, boolean hidden, String effect) {
         this.name = name;
