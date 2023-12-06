@@ -24,6 +24,17 @@ This project is intended for **educational** and demo purposes, in order to show
 **Not** intended for public or distributed use
 
 ## 🎨 Example Api Calls
+### Find a Pokemon (Includes all associated details)
+Api call
+```
+/api/pokemon/pikachu
+```
+
+Json response
+```json
+
+```
+
 ### Find a Pokemon move:
 Api call
 ```
