@@ -41,6 +41,22 @@ Json response
 }
 ```
 
+### Find a Pokemon ability:
+Api call
+```
+/api/ability/berserk
+```
+
+Json response
+```json
+{
+    "name": "Berserk",
+    "hidden": false,
+    "effect": "Raises Special Attack when HP drops below half.",
+    "resourceUrl": "https://pokemondb.net/ability"
+}
+```
+
 ### Find Pokemon's stats:
 Api call
 ```
