@@ -4,14 +4,11 @@ import com.hfish.dev.dexapi.model.enums.Type;
 import com.hfish.dev.dexapi.model.pokemon.Pokemon;
 import com.hfish.dev.dexapi.model.pokemon.Stats;
 import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
-import com.hfish.dev.dexapi.util.webscraper.table.PokemonIdParser;
-import com.hfish.dev.dexapi.util.webscraper.table.StatsParser;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,7 +19,6 @@ import java.util.List;
 @Component
 public class PokemonParser extends HtmlTableParser {
     private StatsParser statsParser;
-    private PokemonIdParser idParser;
 
     @Autowired
     public PokemonParser(StatsParser statsParser) {
