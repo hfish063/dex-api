@@ -32,7 +32,24 @@ Api call
 
 Json response
 ```json
-
+{
+    "nationalId": 25,
+    "name": "Pikachu",
+    "types": [
+        "ELECTRIC"
+    ],
+    "stats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "spatk": 50,
+        "spdef": 50,
+        "speed": 90,
+        "total": 320,
+        "resourceUrl": "https://pokemondb.net/pokedex/all"
+    },
+    "resourceUrl": "https://pokemondb.net/pokedex/all"
+}
 ```
 
 ### Find a Pokemon move:
