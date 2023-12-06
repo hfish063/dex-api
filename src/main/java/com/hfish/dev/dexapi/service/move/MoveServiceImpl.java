@@ -26,15 +26,15 @@ public class MoveServiceImpl implements MoveService {
      * Searches for move with corresponding name, throwing NoModelFoundException if unable to locate
      * If user enters valid move name, we should always return a corresponding object
      *
-     * @param theName name field of the move we are searching for
+     * @param theMoveName name field of the move we are searching for
      * @return Move object if found, throw exception otherwise
      */
     @Override
-    public Move findMove(String theName) {
-        Optional<Move> result = Optional.ofNullable((Move) moveParser.findByName(theName));
+    public Move findMove(String theMoveName) {
+        Optional<Move> result = Optional.ofNullable((Move) moveParser.findByName(theMoveName));
 
         if (result.isEmpty()) {
-            throw new NoModelFoundException("Could not locate move with name" + theName);
+            throw new NoModelFoundException("Could not locate move with name" + theMoveName);
         }
 
         return result.get();

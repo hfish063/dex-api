@@ -2,6 +2,7 @@ package com.hfish.dev.dexapi.service.ability;
 
 import com.hfish.dev.dexapi.exception.NoModelFoundException;
 import com.hfish.dev.dexapi.model.pokemon.Ability;
+import com.hfish.dev.dexapi.util.webscraper.parent.HtmlTableParser;
 import com.hfish.dev.dexapi.util.webscraper.table.AbilityParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @Service
 public class AbilityServiceImpl implements AbilityService {
-    private AbilityParser abilityParser;
+    private HtmlTableParser abilityParser;
 
     @Autowired
     public AbilityServiceImpl(AbilityParser abilityParser) {
@@ -31,7 +32,7 @@ public class AbilityServiceImpl implements AbilityService {
      */
     @Override
     public Ability findAbility(String theAbilityName) {
-        Optional<Ability> result = Optional.ofNullable(abilityParser.findByName(theAbilityName));
+        Optional<Ability> result = Optional.ofNullable((Ability) abilityParser.findByName(theAbilityName));
 
         if (result.isEmpty()) {
             throw new NoModelFoundException("Could not locate ability with name - " + theAbilityName);
