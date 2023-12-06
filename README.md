@@ -29,6 +29,10 @@ Api call
 ```
 /api/pokemon/pikachu
 ```
+*Alternatively...*
+```
+/api/pokemon/id/25
+```
 
 Json response
 ```json
