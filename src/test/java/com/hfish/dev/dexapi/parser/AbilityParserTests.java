@@ -15,7 +15,7 @@ public class AbilityParserTests {
 
     @Test
     public void testFindByName() {
-        Ability expectedAbility = new Ability("Armor Tail", false, "Prevents opponent using priority moves.");
+        Ability expectedAbility = new Ability("Armor Tail", "Prevents opponent using priority moves.");
         Ability actualAbility = abilityParser.findByName("Armor Tail");
 
         assertInstanceOf(Ability.class, actualAbility);

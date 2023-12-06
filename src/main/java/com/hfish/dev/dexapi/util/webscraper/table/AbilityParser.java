@@ -33,6 +33,6 @@ public class AbilityParser extends HtmlTableParser {
         String abilityName = theAttributeList.get(0).text();
         String abilityDescription = theAttributeList.get(2).text();
 
-        return new Ability(abilityName, false,abilityDescription);
+        return new Ability(abilityName,abilityDescription);
     }
 }
