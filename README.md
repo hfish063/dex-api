@@ -158,10 +158,6 @@ Json response
 
 ![Giratina sprite](https://img.pokemondb.net/sprites/scarlet-violet/normal/1x/giratina-altered.png)
 
-Api call for shiny version
-```
-/api/sprite/shiny/giratina/5
-```
 
 Json response
 
